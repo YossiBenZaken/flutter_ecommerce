@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:flutter_ecommerce/components/horizontal_listview.dart';
+
+import 'components/products.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -23,8 +26,8 @@ class _MyHomePageState extends State<MyHomePage> {
           AssetImage('images/m2.jpg'),
         ],
         autoplay: false,
-        animationCurve: Curves.fastOutSlowIn,
-        animationDuration: Duration(milliseconds: 1000),
+        dotSize: 4,
+        indicatorBgPadding: 2,
       ),
     );
     return Scaffold(
@@ -111,7 +114,22 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       body: ListView(
-        children: [image_carousel],
+        children: [
+          image_carousel,
+          Padding(
+            padding: EdgeInsets.all(8),
+            child: Text('Categories'),
+          ),
+          HorizontalList(),
+          Padding(
+            padding: EdgeInsets.all(20),
+            child: Text('Recent products'),
+          ),
+          Container(
+            height: 320,
+            child: Products(),
+          )
+        ],
       ),
     );
   }
