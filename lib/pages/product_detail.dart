@@ -64,7 +64,24 @@ class _ProductDetailsState extends State<ProductDetails> {
             children: [
               Expanded(
                   child: MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text("Size"),
+                          content: Text("Choose the size"),
+                          actions: [
+                            MaterialButton(
+                              onPressed: () {
+                                Navigator.of(context).pop(context);
+                              },
+                              child: Text('Close'),
+                            )
+                          ],
+                        );
+                      });
+                },
                 color: Colors.white,
                 textColor: Colors.grey,
                 elevation: 0.2,
@@ -77,7 +94,24 @@ class _ProductDetailsState extends State<ProductDetails> {
               )),
               Expanded(
                   child: MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text("Color"),
+                          content: Text("Choose the color"),
+                          actions: [
+                            MaterialButton(
+                              onPressed: () {
+                                Navigator.of(context).pop(context);
+                              },
+                              child: Text('Close'),
+                            )
+                          ],
+                        );
+                      });
+                },
                 color: Colors.white,
                 textColor: Colors.grey,
                 elevation: 0.2,
@@ -90,7 +124,24 @@ class _ProductDetailsState extends State<ProductDetails> {
               )),
               Expanded(
                   child: MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text("Quantity"),
+                          content: Text("Choose the quantity"),
+                          actions: [
+                            MaterialButton(
+                              onPressed: () {
+                                Navigator.of(context).pop(context);
+                              },
+                              child: Text('Close'),
+                            )
+                          ],
+                        );
+                      });
+                },
                 color: Colors.white,
                 textColor: Colors.grey,
                 elevation: 0.2,
@@ -126,7 +177,59 @@ class _ProductDetailsState extends State<ProductDetails> {
                     color: Colors.red,
                   ))
             ],
-          )
+          ),
+          Divider(),
+          ListTile(
+            title: Text("Product details"),
+            subtitle: Text(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"),
+          ),
+          Divider(),
+          Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.fromLTRB(12, 5, 5, 5),
+                child: Text(
+                  "Product name",
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(5),
+                child: Text(widget.product['name']),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.fromLTRB(12, 5, 5, 5),
+                child: Text(
+                  "Product brand",
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(5),
+                child: Text("Brand X"),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.fromLTRB(12, 5, 5, 5),
+                child: Text(
+                  "Product condition",
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(5),
+                child: Text("NEW"),
+              )
+            ],
+          ),
         ],
       ),
     );
