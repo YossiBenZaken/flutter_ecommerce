@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce/components/products.dart';
+import 'package:flutter_ecommerce/homepage.dart';
 
 class ProductDetails extends StatefulWidget {
   final product;
@@ -14,14 +16,17 @@ class _ProductDetailsState extends State<ProductDetails> {
       appBar: AppBar(
         elevation: 0.1,
         backgroundColor: Colors.red,
-        title: const Text('Fashapp'),
+        title: InkWell(
+          child: Text('Fashapp'),
+          onTap: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => MyHomePage()));
+          },
+        ),
         actions: [
           IconButton(
               onPressed: () {},
               icon: const Icon(Icons.search, color: Colors.white)),
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.shopping_cart, color: Colors.white)),
         ],
       ),
       body: ListView(
@@ -86,7 +91,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 textColor: Colors.grey,
                 elevation: 0.2,
                 child: Row(
-                  children: [
+                  children: const [
                     Expanded(child: Text("Size")),
                     Expanded(child: Icon(Icons.arrow_drop_down))
                   ],
@@ -116,7 +121,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 textColor: Colors.grey,
                 elevation: 0.2,
                 child: Row(
-                  children: [
+                  children: const [
                     Expanded(child: Text("Color")),
                     Expanded(child: Icon(Icons.arrow_drop_down))
                   ],
@@ -146,7 +151,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 textColor: Colors.grey,
                 elevation: 0.2,
                 child: Row(
-                  children: [
+                  children: const [
                     Expanded(child: Text("Qty")),
                     Expanded(child: Icon(Icons.arrow_drop_down))
                   ],
@@ -166,28 +171,28 @@ class _ProductDetailsState extends State<ProductDetails> {
               )),
               IconButton(
                   onPressed: () {},
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.add_shopping_cart,
                     color: Colors.red,
                   )),
               IconButton(
                   onPressed: () {},
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.favorite_border,
                     color: Colors.red,
                   ))
             ],
           ),
-          Divider(),
-          ListTile(
+          const Divider(),
+          const ListTile(
             title: Text("Product details"),
             subtitle: Text(
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"),
           ),
-          Divider(),
+          const Divider(),
           Row(
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.fromLTRB(12, 5, 5, 5),
                 child: Text(
                   "Product name",
@@ -195,13 +200,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(5),
+                padding: const EdgeInsets.all(5),
                 child: Text(widget.product['name']),
               )
             ],
           ),
           Row(
-            children: [
+            children: const [
               Padding(
                 padding: EdgeInsets.fromLTRB(12, 5, 5, 5),
                 child: Text(
@@ -216,7 +221,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             ],
           ),
           Row(
-            children: [
+            children: const [
               Padding(
                 padding: EdgeInsets.fromLTRB(12, 5, 5, 5),
                 child: Text(
@@ -230,8 +235,52 @@ class _ProductDetailsState extends State<ProductDetails> {
               )
             ],
           ),
+          const Divider(),
+          const Padding(
+            padding: EdgeInsets.all(8),
+            child: Text("Similar products"),
+          ),
+          Container(
+            height: 340,
+            child: Similar_products(),
+          )
         ],
       ),
+    );
+  }
+}
+
+class Similar_products extends StatefulWidget {
+  @override
+  _Similar_productsState createState() => _Similar_productsState();
+}
+
+class _Similar_productsState extends State<Similar_products> {
+  var product_list = [
+    {
+      "name": "Blazer",
+      "picture": "images/products/blazer1.jpeg",
+      "old_price": 120,
+      "price": 85
+    },
+    {
+      "name": "Skt",
+      "picture": "images/products/skt1.jpeg",
+      "old_price": 100,
+      "price": 50
+    }
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      itemCount: product_list.length,
+      gridDelegate:
+          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+      itemBuilder: (BuildContext context, int index) {
+        return Single_prod(
+          product: product_list[index],
+        );
+      },
     );
   }
 }

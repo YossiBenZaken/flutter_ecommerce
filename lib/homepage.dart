@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter_ecommerce/components/horizontal_listview.dart';
+import 'package:flutter_ecommerce/pages/cart.dart';
 
 import 'components/products.dart';
 
@@ -28,6 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
         autoplay: false,
         dotSize: 4,
         indicatorBgPadding: 2,
+        dotBgColor: Colors.transparent,
       ),
     );
     return Scaffold(
@@ -40,7 +42,10 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {},
               icon: const Icon(Icons.search, color: Colors.white)),
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Cart()));
+              },
               icon: const Icon(Icons.shopping_cart, color: Colors.white)),
         ],
       ),
@@ -64,31 +69,38 @@ class _MyHomePageState extends State<MyHomePage> {
             const InkWell(
               child: ListTile(
                 title: Text('Home Page'),
-                leading: Icon(Icons.home),
+                leading: Icon(Icons.home, color: Colors.red),
               ),
             ),
             const InkWell(
               child: ListTile(
                 title: Text('My account'),
-                leading: Icon(Icons.person),
+                leading: Icon(Icons.person, color: Colors.red),
               ),
             ),
             const InkWell(
               child: ListTile(
                 title: Text('My orders'),
-                leading: Icon(Icons.shopping_basket),
+                leading: Icon(Icons.shopping_basket, color: Colors.red),
               ),
             ),
-            const InkWell(
-              child: ListTile(
-                title: Text('Categories'),
-                leading: Icon(Icons.dashboard),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Cart()));
+              },
+              child: const ListTile(
+                title: Text('Shopping Cart'),
+                leading: Icon(
+                  Icons.shopping_cart,
+                  color: Colors.red,
+                ),
               ),
             ),
             const InkWell(
               child: ListTile(
                 title: Text('Favorites'),
-                leading: Icon(Icons.favorite),
+                leading: Icon(Icons.favorite, color: Colors.red),
               ),
             ),
             const Divider(),
@@ -97,7 +109,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 title: Text('Settings'),
                 leading: Icon(
                   Icons.settings,
-                  color: Colors.blue,
                 ),
               ),
             ),
@@ -106,7 +117,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 title: Text('About'),
                 leading: Icon(
                   Icons.help,
-                  color: Colors.green,
                 ),
               ),
             ),
@@ -116,16 +126,16 @@ class _MyHomePageState extends State<MyHomePage> {
       body: ListView(
         children: [
           image_carousel,
-          Padding(
+          const Padding(
             padding: EdgeInsets.all(8),
             child: Text('Categories'),
           ),
           HorizontalList(),
-          Padding(
+          const Padding(
             padding: EdgeInsets.all(20),
             child: Text('Recent products'),
           ),
-          Container(
+          SizedBox(
             height: 320,
             child: Products(),
           )

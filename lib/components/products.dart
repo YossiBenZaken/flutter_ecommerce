@@ -19,6 +19,24 @@ class _ProductsState extends State<Products> {
       "picture": "images/products/dress1.jpeg",
       "old_price": 100,
       "price": 50
+    },
+    {
+      "name": "Hills",
+      "picture": "images/products/hills1.jpeg",
+      "old_price": 100,
+      "price": 50
+    },
+    {
+      "name": "Pants",
+      "picture": "images/products/pants2.jpeg",
+      "old_price": 100,
+      "price": 50
+    },
+    {
+      "name": "Skt",
+      "picture": "images/products/skt1.jpeg",
+      "old_price": 100,
+      "price": 50
     }
   ];
   @override
@@ -26,7 +44,7 @@ class _ProductsState extends State<Products> {
     return GridView.builder(
       itemCount: product_list.length,
       gridDelegate:
-          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
       itemBuilder: (BuildContext context, int index) {
         return Single_prod(
           product: product_list[index],
@@ -52,26 +70,21 @@ class Single_prod extends StatelessWidget {
                     ))),
             child: GridTile(
               footer: Container(
-                color: Colors.white70,
-                child: ListTile(
-                  leading: Text(
-                    product['name'],
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  title: Text(
-                    "\$${product['price']}",
-                    style: TextStyle(
-                        color: Colors.red, fontWeight: FontWeight.w800),
-                  ),
-                  subtitle: Text(
-                    "\$${product['old_price']}",
-                    style: TextStyle(
-                        color: Colors.black54,
-                        fontWeight: FontWeight.w800,
-                        decoration: TextDecoration.lineThrough),
-                  ),
-                ),
-              ),
+                  color: Colors.white,
+                  child: Row(children: [
+                    Expanded(
+                      child: Text(
+                        product['name'],
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                    ),
+                    Text(
+                      "\$${product['price']}",
+                      style: const TextStyle(
+                          color: Colors.red, fontWeight: FontWeight.bold),
+                    )
+                  ])),
               child: Image.asset(
                 product['picture'],
                 fit: BoxFit.cover,
